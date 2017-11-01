@@ -1,0 +1,6 @@
+{
+	"dwi": "/N/dc2/projects/lifebid/code/bacaron/app-NODDI_AMICO/data.nii.gz",
+	"bvecs": "/N/dc2/projects/lifebid/code/bacaron/app-NODDI_AMICO/bvecs",
+	"bvals": "/N/dc2/projects/lifebid/code/bacaron/app-NODDI_AMICO/bvals",
+	"t1": "/N/dc2/projects/lifebid/code/bacaron/app-NODDI_AMICO/t1_acpc.nii.gz"
+}
