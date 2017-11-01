@@ -16,12 +16,12 @@ end
 config = loadjson('config.json');
 dwiRaw = fullfile(config.dwi);
 bvecs_pre = fullfile(config.bvecs);
-b0 = fullfile('NODDI','nodif_preNODDI_brain.nii.gz');
+b0 = fullfile('nodif_preNODDI_brain.nii.gz');
 t1 = fullfile(config.t1);
-outAcpcTransform = fullfile('NODDI','acpcTransform.mat');
+outAcpcTransform = fullfile('acpcTransform.mat');
 outMm = [2 2 2];
-outDwi = fullfile('NODDI','data_acpc.nii.gz');
-outBvecs = fullfile('NODDI','bvecs_rot');
+outDwi = fullfile('data_acpc.nii.gz');
+outBvecs = fullfile('bvecs_rot');
 
 % Get transformation matrix
 dtiRawAlignToT1(b0,t1,outAcpcTransform);
