@@ -9,6 +9,7 @@ case 'IUHPC'
 case 'VM'
   disp('loading paths (VM)')
   addpath(genpath('/usr/local/vistasoft'))
+end
 
 
 % Set directories
