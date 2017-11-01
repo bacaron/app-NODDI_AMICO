@@ -118,7 +118,7 @@ if [ -f "$OUTDIR/AMICO/NODDI/FIT_ICVF.nii.gz" ]; then
 else
 	echo "Fitting NODDI"
 	## Run NODDI
-	python $SERVICE_DIR/NODDI.py;
+	python ./NODDI.py;
 	
 	ret=$?
 	if [ ! $ret -eq 0 ]; then
