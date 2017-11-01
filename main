@@ -2,6 +2,7 @@
 
 ## modules
 module load fsl/5.0.9
+module load java
 module load camino
 module load matlab/2017a
 module load spm/8
