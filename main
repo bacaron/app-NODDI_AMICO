@@ -4,8 +4,12 @@
 module load fsl/5.0.9
 module load java
 module load camino
+module unload python
 module load matlab/2017a
 module load spm/8
+module load anaconda2
+
+source activate noddi
 
 echo "Setting file paths"
 # Grab the config.json inputs
@@ -15,7 +19,7 @@ bvecs=`./jq -r '.bvecs' config.json`;
 t1=`./jq -r '.t1' config.json`;
 echo "Files loaded"
 
-if [ -f "nodif_acpc_brain.nii.gz" ]; then
+if [ -f "nodif_brain.nii.gz" ]; then
 	echo "File exists. Skipping b0 brainmask creation"
 else
 	echo "Create b0 brainnmask from ACPC aligned dwi for NODDI"
@@ -86,7 +90,7 @@ if [ -f "./AMICO/NODDI/FIT_ICVF_NEW.nii.gz" ]; then
 	echo "Header ammended already. Skipping"
 else
 	## Ammend header of NODDI images
-	matlab -nodisplay -nosplash -r "niftiHeaderAmmendNODDI()";
+	matlab -nodisplay -nosplash -r "niftiHeaderAmendNODDI()";
 
 	ret=$?
 	if [ ! $ret -eq 0 ]; then
