@@ -19,6 +19,10 @@ bvecs=`./jq -r '.bvecs' config.json`;
 t1=`./jq -r '.t1' config.json`;
 echo "Files loaded"
 
+noddiImages="FIT_ICVF_NEW FIT_ISOVF_NEW FIT_OD_NEW"
+noddiFile="NODDI"
+mkdir noddiFile;
+
 if [ -f "nodif_brain.nii.gz" ]; then
 	echo "File exists. Skipping b0 brainmask creation"
 else
@@ -67,6 +71,9 @@ else
 fi
 echo "Camino scheme file creation complete."
 
+cp -v bvals.scheme ./$noddiFile/;
+cp -v ${dwi} ./$noddiFile/;
+cp -v nodif_brain_mask.nii.gz ./$noddiFile/;
 
 if [ -f "./AMICO/NODDI/FIT_ICVF.nii.gz" ]; then
 	echo "File exists. Skipping NODDI model fitting via AMICO"
@@ -100,5 +107,10 @@ else
 	fi
 fi
 echo "Ammending complete"
+
+for NODDIIMAGES in $noddiImages
+	do
+		mv ./$noddiFile/AMICO/NODDI/${NODDIIMAGES} ./output/
+	done
 
 echo "NODDI Pipeline Complete"
