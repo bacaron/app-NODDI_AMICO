@@ -15,20 +15,64 @@ bvecs=`./jq -r '.bvecs' config.json`;
 t1=`./jq -r '.t1' config.json`;
 echo "Files loaded"
 
-if [ -f "nodif_acpc_brain.nii.gz" ]; then
-	echo "File exists. Skipping b0 brainmask creation"
-else
-	echo "Create b0 brainnmask from ACPC aligned dwi for NODDI"
-	## Create b0 brainmask for NODDI
+if [ -f "nodif_preNODDI_brain.nii.gz" ]; then
+	echo "File exists. Skipping b0 brainmask creation."
+else	
+	echo "Creating b0 brainmask for alignment"
+	# Create b0 image
 	select_dwi_vols \
 		${dwi} \
 		${bvals} \
 		nodif.nii.gz \
 		0;
 
-	# Brain extraction before NODDI
+	# Brain extraction before alignment
 	bet nodif.nii.gz \
-		nodif_brain \
+		nodif_preNODDI_brain \
+		-f 0.4 \
+		-g 0 \
+		-m;
+	ret=$?
+	if [ ! $ret -eq 0 ]; then
+		echo "b0 brainmask creation failed"
+		echo $ret > finished
+		exit $ret
+	fi
+fi
+echo "b0 brainmask creation complete"
+
+
+if [ -f "data_acpc.nii.gz" ]; then
+	echo "File exists. Skipping registration."
+else
+	echo "Register dwi to T1 ACPC space"
+	## Align dwi to ACPC space
+	matlab -nodisplay -nosplash -r "dwiAlignT1NODDI()";
+	
+	ret=$?
+	if [ ! $ret -eq 0 ]; then
+		echo "Registration failed"
+		echo $ret > finished
+		exit $ret
+	fi
+fi
+echo "Registration complete."
+
+
+if [ -f "nodif_acpc_brain.nii.gz" ]; then
+	echo "File exists. Skipping b0 brainmask creation"
+else
+	echo "Create b0 brainnmask from ACPC aligned dwi for NODDI"
+	## Create b0 brainmask for NODDI
+	select_dwi_vols \
+		data_acpc.nii.gz \
+		${bvals} \
+		nodif_acpc.nii.gz \
+		0;
+
+	# Brain extraction before NODDI
+	bet nodif_acpc.nii.gz \
+		nodif_acpc_brain \
 		-f 0.4 \
 		-g 0 \
 		-m;
@@ -49,7 +93,7 @@ else
 	echo "Create Camino Scheme File"
 	## Create Camino scheme file
 	fsl2scheme \
-		-bvecfile ${bvecs} \
+		-bvecfile bvecs_rot \
 		-bvalfile ${bvals} \
 		-bscale 1 \
 		> bvals.scheme;
@@ -69,7 +113,7 @@ if [ -f "./AMICO/NODDI/FIT_ICVF.nii.gz" ]; then
 else
 	echo "Fitting NODDI"
 	## Run NODDI
-	NODDI.py;
+	python ./NODDI.py;
 	
 	ret=$?
 	if [ ! $ret -eq 0 ]; then
@@ -79,6 +123,7 @@ else
 	fi
 fi
 echo "NODDI complete"
+
 
 
 echo "Ammend header of NODDI image"
@@ -96,5 +141,9 @@ else
 	fi
 fi
 echo "Ammending complete"
+
+mv data_acpc.nii.gz dwi.nii.gz
+mv bvecs_rot dwi.bvecs
+mv bvals dwi.bvals
 
 echo "NODDI Pipeline Complete"
