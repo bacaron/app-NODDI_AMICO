@@ -21,7 +21,7 @@ echo "Files loaded"
 
 noddiImages="FIT_ICVF_NEW FIT_ISOVF_NEW FIT_OD_NEW";
 noddiFile="NODDI";
-mkdir noddiFile;
+mkdir $noddiFile;
 
 if [ -f "nodif_brain.nii.gz" ]; then
 	echo "File exists. Skipping b0 brainmask creation"
