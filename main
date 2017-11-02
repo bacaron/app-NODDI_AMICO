@@ -4,12 +4,9 @@
 module load fsl/5.0.9
 module load java
 module load camino
-module unload python
+module load python
 module load matlab/2017a
 module load spm/8
-module load anaconda2
-
-source activate noddi
 
 echo "Setting file paths"
 # Grab the config.json inputs
