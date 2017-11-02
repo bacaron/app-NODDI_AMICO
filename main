@@ -95,7 +95,7 @@ echo "NODDI complete"
 
 
 echo "Ammend header of NODDI image"
-if [ -f "./AMICO/NODDI/FIT_ICVF_NEW.nii.gz" ]; then
+if [ -f "./$noddiFile/AMICO/NODDI/FIT_ICVF_NEW.nii.gz" ]; then
 	echo "Header ammended already. Skipping"
 else
 	## Ammend header of NODDI images
@@ -110,10 +110,7 @@ else
 fi
 echo "Ammending complete"
 
-for NODDIIMAGES in $noddiImages
-	do
-		mv ./$noddiFile/AMICO/NODDI/${NODDIIMAGES} ./
-	done
+mv ./$noddiFile/AMICO/NODDI/config.pickle ./
 rm -rf ./$noddiFile
 
 echo "NODDI Pipeline Complete"
