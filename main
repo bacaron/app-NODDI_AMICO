@@ -21,7 +21,7 @@ bvecs=`./jq -r '.bvecs' config.json`;
 t1=`./jq -r '.t1' config.json`;
 echo "Files loaded"
 
-noddiImages="FIT_ICVF_NEW FIT_ISOVF_NEW FIT_OD_NEW";
+noddiImages="FIT_ICVF_NEW FIT_ISOVF_NEW FIT_OD_NEW FIT_dir config.pickle";
 noddiFile="NODDI";
 mkdir $noddiFile;
 
@@ -112,7 +112,7 @@ echo "Ammending complete"
 
 for NODDIIMAGES in $noddiImages
 	do
-		mv ./$noddiFile/AMICO/NODDI/${NODDIIMAGES} ./output/
+		mv ./$noddiFile/AMICO/NODDI/${NODDIIMAGES} ./
 	done
 rm -rf ./$noddiFile
 
