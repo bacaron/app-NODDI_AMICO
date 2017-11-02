@@ -1,4 +1,4 @@
-function niftiHeaderAmmendNODDI()
+function niftiHeaderAmendNODDI()
 
 icvf = niftiRead(fullfile('AMICO','NODDI','FIT_ICVF.nii.gz'));
 od = niftiRead(fullfile('AMICO','NODDI','FIT_OD.nii.gz'));
