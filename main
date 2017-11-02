@@ -39,7 +39,7 @@ else
 
 	ret=$?
 	if [ ! $ret -eq 0 ]; then
-		echo "Registration failed"
+		echo "b0 brainmask creation failed"
 		echo $ret > finished
 		exit $ret
 	fi
