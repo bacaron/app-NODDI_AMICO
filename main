@@ -114,6 +114,7 @@ for NODDIIMAGE in "FIT_dir config.pickle"
 	do
 		mv ./$noddiFile/AMICO/NODDI/${NODDIIMAGE} ./
 	done
-rm -rf ./$noddiFile
+
+rm -rf ./$noddiFile;
 
 echo "NODDI Pipeline Complete"
