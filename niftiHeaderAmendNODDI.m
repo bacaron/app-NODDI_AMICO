@@ -3,7 +3,7 @@ function niftiHeaderAmmendNODDI()
 icvf = niftiRead(fullfile('AMICO','NODDI','FIT_ICVF.nii.gz'));
 od = niftiRead(fullfile('AMICO','NODDI','FIT_OD.nii.gz'));
 isovf = niftiRead(fullfile('AMICO','NODDI','FIT_ISOVF.nii.gz'));
-b0 = niftiRead(fullfile('nodif_acpc_brain.nii.gz'));
+b0 = niftiRead(fullfile('nodif_brain.nii.gz'));
 n_fields_icvf = fieldnames( icvf );
 n_fields_od = fieldnames( od );
 n_fields_isovf = fieldnames (isovf);
