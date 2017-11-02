@@ -19,8 +19,8 @@ bvecs=`./jq -r '.bvecs' config.json`;
 t1=`./jq -r '.t1' config.json`;
 echo "Files loaded"
 
-noddiImages="FIT_ICVF_NEW FIT_ISOVF_NEW FIT_OD_NEW"
-noddiFile="NODDI"
+noddiImages="FIT_ICVF_NEW FIT_ISOVF_NEW FIT_OD_NEW";
+noddiFile="NODDI";
 mkdir noddiFile;
 
 if [ -f "nodif_brain.nii.gz" ]; then
@@ -112,5 +112,6 @@ for NODDIIMAGES in $noddiImages
 	do
 		mv ./$noddiFile/AMICO/NODDI/${NODDIIMAGES} ./output/
 	done
+rm -rf ./$noddiFile
 
 echo "NODDI Pipeline Complete"
