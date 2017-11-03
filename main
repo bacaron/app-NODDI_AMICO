@@ -21,7 +21,7 @@ bvecs=`./jq -r '.bvecs' config.json`;
 t1=`./jq -r '.t1' config.json`;
 echo "Files loaded"
 
-noddiImages="FIT_ICVF_NEW FIT_ISOVF_NEW FIT_OD_NEW FIT_dir config.pickle";
+noddiImages="FIT_ICVF_NEW.nii.gz FIT_ISOVF_NEW.nii.gz FIT_OD_NEW.nii.gz FIT_dir.nii.gz config.pickle";
 noddiFile="NODDI";
 mkdir $noddiFile;
 
@@ -110,9 +110,9 @@ else
 fi
 echo "Ammending complete"
 
-for NODDIIMAGE in "FIT_dir config.pickle"
+for NODDIIMAGES in $noddiImages
 	do
-		mv ./$noddiFile/AMICO/NODDI/${NODDIIMAGE} ./
+		mv ./$noddiFile/AMICO/NODDI/${NODDIIMAGES} ./
 	done
 
 echo "NODDI Pipeline Complete"
