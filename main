@@ -94,7 +94,7 @@ fi
 echo "NODDI complete"
 
 
-echo "Ammend header of NODDI image"
+echo "Amend header of NODDI image"
 if [ -f "./$noddiFile/AMICO/NODDI/FIT_ICVF_NEW.nii.gz" ]; then
 	echo "Header ammended already. Skipping"
 else
