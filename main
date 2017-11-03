@@ -115,4 +115,7 @@ for NODDIIMAGES in $noddiImages
 		mv ./$noddiFile/AMICO/NODDI/${NODDIIMAGES} ./
 	done
 
+rm -rf ./$noddiFile;
+rm -rf *nodif*.nii.gz;
+
 echo "NODDI Pipeline Complete"
