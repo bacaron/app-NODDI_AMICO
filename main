@@ -117,5 +117,6 @@ for NODDIIMAGES in $noddiImages
 
 rm -rf ./$noddiFile;
 rm -rf *nodif*.nii.gz;
+rm -rf ./kernels;
 
 echo "NODDI Pipeline Complete"
