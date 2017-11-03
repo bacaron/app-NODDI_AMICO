@@ -40,7 +40,7 @@ for ii = 1:length(noddiFiles)
     
     noddiFiles{ii}.fname = ([noddiFiles{ii}.fname(1:end-7),'_NEW',noddiFiles{ii}.fname(end-6:end)]);
 
-    niftiWrite(noddiFiles{ii},fullfile(pwd))
+    niftiWrite(noddiFiles{ii})
 end
 exit;
 end
