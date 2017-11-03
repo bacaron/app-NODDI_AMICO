@@ -77,7 +77,7 @@ cp -v bvals.scheme ./$noddiFile/;
 cp -v ${dwi} ./$noddiFile/;
 cp -v nodif_brain_mask.nii.gz ./$noddiFile/;
 
-if [ -f ".$noddiFile/AMICO/NODDI/FIT_ICVF.nii.gz" ]; then
+if [ -f "./$noddiFile/AMICO/NODDI/FIT_ICVF.nii.gz" ]; then
 	echo "File exists. Skipping NODDI model fitting via AMICO"
 else
 	echo "Fitting NODDI"
