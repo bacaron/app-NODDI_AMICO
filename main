@@ -6,12 +6,14 @@
 module load fsl/5.0.9
 module load java
 module load camino
-module unload python
 module load matlab/2017a
 module load spm/8
-module load anaconda2
 
-source activate noddi
+if [ $HPC == "KARST" ]; then
+	module unload python
+	module load anaconda2
+	source activate noddi
+fi
 
 echo "Setting file paths"
 # Grab the config.json inputs
@@ -81,8 +83,7 @@ if [ -f "./$noddiFile/AMICO/NODDI/FIT_ICVF.nii.gz" ]; then
 	echo "File exists. Skipping NODDI model fitting via AMICO"
 else
 	echo "Fitting NODDI"
-	## Run NODDI
-	NODDI.py;
+	python -u NODDI.py
 	
 	ret=$?
 	if [ ! $ret -eq 0 ]; then
